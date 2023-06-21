@@ -58,5 +58,5 @@ npm run dev
 ```
 
 ## Enlaces de interés
-[Documentación vite-plugin-pwa](https://vite-pwa-org.netlify.app/)
+- [Documentación vite-plugin-pwa](https://vite-pwa-org.netlify.app/)
 
