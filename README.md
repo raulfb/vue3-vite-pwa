@@ -65,6 +65,40 @@ devOptions: {
 },
 ```
 
+## Notificaciones Push
+
+### Comprobar si están habilitadas
+
+Para comprobar si están habilitadas y en caso de que no lo estén solicitar permiso.
+
+```js
+if (Notification.permission !== 'granted') {
+    Notification.requestPermission();
+}
+```
+
+### Mostrar notificación
+
+```js
+function showNotification() {
+    Notification.requestPermission((result) => {
+        if (result === "granted") {
+            navigator.serviceWorker.ready.then((registration) => {
+                registration.showNotification("Atención", {
+                    body: "Esto es una notificación",
+                    icon: "../public/android-chrome-512x512.png",
+                    actions: [
+                        { action: "Aceptar", title: "Aceptar" },
+                        { action: "Rechazar", title: "Rechazar" },
+                    ],
+                });
+            });
+        }
+    });
+}
+
+showNotification();
+```
 ## Enlaces de interés
 - [Documentación vite-plugin-pwa](https://vite-pwa-org.netlify.app/)
 

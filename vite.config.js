@@ -9,7 +9,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       devOptions: {
         enabled: true,
-      },
+      }
     })
   ],
 })

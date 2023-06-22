@@ -1,7 +1,3 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <div>
     <a href="https://vitejs.dev" target="_blank">
@@ -13,7 +9,32 @@ import HelloWorld from './components/HelloWorld.vue'
   </div>
   <HelloWorld msg="Vite + Vue" />
 </template>
+<script setup>
+import HelloWorld from "./components/HelloWorld.vue";
 
+if (Notification.permission !== "granted") {
+  Notification.requestPermission();
+}
+
+function showNotification() {
+  Notification.requestPermission((result) => {
+    if (result === "granted") {
+      navigator.serviceWorker.ready.then((registration) => {
+        registration.showNotification("Atención", {
+          body: "Esto es una notificación",
+          icon: "../public/android-chrome-512x512.png",
+          actions: [
+            { action: "Aceptar", title: "Aceptar" },
+            { action: "Rechazar", title: "Rechazar" },
+          ],
+        });
+      });
+    }
+  });
+}
+
+showNotification();
+</script>
 <style scoped>
 .logo {
   height: 6em;
@@ -21,9 +42,11 @@ import HelloWorld from './components/HelloWorld.vue'
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
