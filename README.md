@@ -18,7 +18,13 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
+      srcDir: 'src',
+      filename: 'sw.js',
       registerType: 'autoUpdate',
+      devOptions: {
+      enabled: true,
+      type: 'module',
+    },
     })
   ],
 })
@@ -98,6 +104,25 @@ function showNotification() {
 }
 
 showNotification();
+```
+En el sw.js
+```js
+
+self.addEventListener("notificationclick", function (event) {
+  console.log("notificación abierta");
+});
+
+self.addEventListener('notificationclick', (event) => {
+  if (event.action === 'Aceptar') {
+    console.log('Se ha pulsado en Aceptar');
+    // Realiza las acciones correspondientes al aceptar la notificación
+  } else if (event.action === 'Rechazar') {
+    console.log('Se ha pulsado en Rechazar');
+    // Realiza las acciones correspondientes al rechazar la notificación
+  }
+  event.notification.close(); // Cierra la notificación
+});
+
 ```
 ## Enlaces de interés
 - [Documentación vite-plugin-pwa](https://vite-pwa-org.netlify.app/)

@@ -7,14 +7,17 @@
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
+  <button @click="showNotification()">Notificacion</button>
   <HelloWorld msg="Vite + Vue" />
 </template>
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
-
+navigator.serviceWorker.register("sw.js");
 if (Notification.permission !== "granted") {
   Notification.requestPermission();
 }
+
+// addEventListener("notificationclick", (event) => {});
 
 function showNotification() {
   Notification.requestPermission((result) => {
@@ -33,7 +36,6 @@ function showNotification() {
   });
 }
 
-showNotification();
 </script>
 <style scoped>
 .logo {

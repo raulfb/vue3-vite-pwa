@@ -6,10 +6,13 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
+      srcDir: 'src',
+      filename: 'sw.js',
       registerType: 'autoUpdate',
       devOptions: {
-        enabled: true,
-      }
+      enabled: true,
+      type: 'module',
+    },
     })
   ],
 })
