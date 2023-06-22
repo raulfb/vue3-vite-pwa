@@ -57,6 +57,14 @@ export default defineConfig({
 npm run dev
 ```
 
+## Habilitar el entorno de desarrollo
+Para habilitar el entorno de desarrollo edita el archivo vite.config.js y añade:
+```js
+devOptions: {
+  enabled: true,
+},
+```
+
 ## Enlaces de interés
 - [Documentación vite-plugin-pwa](https://vite-pwa-org.netlify.app/)
 
