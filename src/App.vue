@@ -27,8 +27,8 @@ function showNotification() {
           body: "Esto es una notificación",
           icon: "../public/android-chrome-512x512.png",
           actions: [
-            { action: "Aceptar", title: "Aceptar" },
-            { action: "Rechazar", title: "Rechazar" },
+            { action: "aceptar", title: "Aceptar" },
+            { action: "rechazar", title: "Rechazar" },
           ],
         });
       });
@@ -36,6 +36,16 @@ function showNotification() {
   });
 }
 
+const channel = new BroadcastChannel("sw-mensajes");
+channel.addEventListener("message", (event) => {
+  console.log("Received", event.data.title);
+  if (event.data.title == "aceptar") {
+    console.log("Botón aceptar pulsado");
+  }
+  if (event.data.title == "rechazar") {
+    console.log("Botón rechazar pulsado");
+  }
+});
 </script>
 <style scoped>
 .logo {

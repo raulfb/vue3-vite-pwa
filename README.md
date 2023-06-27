@@ -94,14 +94,26 @@ function showNotification() {
                     body: "Esto es una notificación",
                     icon: "../public/android-chrome-512x512.png",
                     actions: [
-                        { action: "Aceptar", title: "Aceptar" },
-                        { action: "Rechazar", title: "Rechazar" },
+                        { action: "aceptar", title: "Aceptar" },
+                        { action: "rechazar", title: "Rechazar" },
                     ],
                 });
             });
         }
     });
 }
+
+const channel = new BroadcastChannel('sw-mensajes');
+channel.addEventListener('message', event => {
+    console.log('Received', event.data.title);
+    if (event.data.title=="aceptar") {
+      console.log("Botón aceptar pulsado")
+    } 
+    if (event.data.title=="rechazar") {
+      console.log("Botón rechazar pulsado")
+    } 
+})
+
 
 showNotification();
 ```
@@ -112,17 +124,17 @@ self.addEventListener("notificationclick", function (event) {
   console.log("notificación abierta");
 });
 
-self.addEventListener('notificationclick', (event) => {
-  if (event.action === 'Aceptar') {
-    console.log('Se ha pulsado en Aceptar');
-    // Realiza las acciones correspondientes al aceptar la notificación
-  } else if (event.action === 'Rechazar') {
-    console.log('Se ha pulsado en Rechazar');
-    // Realiza las acciones correspondientes al rechazar la notificación
-  }
-  event.notification.close(); // Cierra la notificación
-});
 
+self.addEventListener("notificationclick", function (event) {
+  const channel = new BroadcastChannel('sw-mensajes');
+  if (event.action == 'aceptar') {
+    channel.postMessage({title:'aceptar'});
+  } 
+
+  if (event.action == 'rechazar') {
+    channel.postMessage({title:'rechazar'});
+  }
+});
 ```
 ## Enlaces de interés
 - [Documentación vite-plugin-pwa](https://vite-pwa-org.netlify.app/)

@@ -50,13 +50,13 @@ self.addEventListener("notificationclick", function (event) {
   console.log("notificación abierta");
 });
 
-self.addEventListener('notificationclick', (event) => {
-  if (event.action === 'Aceptar') {
-    console.log('Se ha pulsado en Aceptar');
-    // Realiza las acciones correspondientes al aceptar la notificación
-  } else if (event.action === 'Rechazar') {
-    console.log('Se ha pulsado en Rechazar');
-    // Realiza las acciones correspondientes al rechazar la notificación
+self.addEventListener("notificationclick", function (event) {
+  const channel = new BroadcastChannel("sw-mensajes");
+  if (event.action == "aceptar") {
+    channel.postMessage({ title: "aceptar" });
   }
-  event.notification.close(); // Cierra la notificación
+
+  if (event.action == "rechazar") {
+    channel.postMessage({ title: "rechazar" });
+  }
 });
