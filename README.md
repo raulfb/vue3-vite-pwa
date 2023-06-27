@@ -85,6 +85,7 @@ if (Notification.permission !== 'granted') {
 
 ### Mostrar notificación
 
+App.vue
 ```js
 function showNotification() {
     Notification.requestPermission((result) => {
@@ -103,6 +104,21 @@ function showNotification() {
     });
 }
 
+showNotification();
+```
+En el sw.js
+```js
+
+self.addEventListener("notificationclick", function (event) {
+  console.log("notificación abierta");
+});
+
+```
+
+### Botones notificación
+
+App.vue
+```js
 const channel = new BroadcastChannel('sw-mensajes');
 channel.addEventListener('message', event => {
     console.log('Received', event.data.title);
@@ -114,16 +130,10 @@ channel.addEventListener('message', event => {
     } 
 })
 
-
-showNotification();
 ```
-En el sw.js
+sw.js
+
 ```js
-
-self.addEventListener("notificationclick", function (event) {
-  console.log("notificación abierta");
-});
-
 
 self.addEventListener("notificationclick", function (event) {
   const channel = new BroadcastChannel('sw-mensajes');
