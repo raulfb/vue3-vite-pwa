@@ -12,7 +12,7 @@
 </template>
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
-navigator.serviceWorker.register("sw.js");
+navigator.serviceWorker.register("/sw.js");
 if (Notification.permission !== "granted") {
   Notification.requestPermission();
 }
