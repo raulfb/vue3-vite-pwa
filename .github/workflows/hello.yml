@@ -9,6 +9,8 @@ jobs:
   hello_world:
     runs-on: ubuntu-latest
     steps:
-      - name: dice hola
+      - name: saludo
         run: |
           echo "hola mundo!"
+      - name: fecha
+        run: date
