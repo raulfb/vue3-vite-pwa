@@ -1,0 +1,14 @@
+name: Prueba
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dice hola
+        run: |
+          echo "hola mundo!"
