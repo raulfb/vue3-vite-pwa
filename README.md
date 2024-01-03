@@ -154,4 +154,3 @@ self.addEventListener("notificationclick", function (event) {
 ```
 ## Enlaces de interés
 - [Documentación vite-plugin-pwa](https://vite-pwa-org.netlify.app/)
-
