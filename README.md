@@ -1,3 +1,5 @@
+[![Deployment Pipeline](https://github.com/raulfb/vue3-vite-pwa/actions/workflows/pipeline.yml/badge.svg)](https://github.com/raulfb/vue3-vite-pwa/actions/workflows/pipeline.yml)
+
 # Vue3 + Vite + PWA
 
 Este es un proyecto que utiliza Vue 3, Vite  para crear una aplicación web progresiva (PWA).
@@ -154,3 +156,4 @@ self.addEventListener("notificationclick", function (event) {
 ```
 ## Enlaces de interés
 - [Documentación vite-plugin-pwa](https://vite-pwa-org.netlify.app/)
+
