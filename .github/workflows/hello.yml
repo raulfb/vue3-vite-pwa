@@ -14,5 +14,3 @@ jobs:
           echo "hola mundo!"
       - name: fecha
         run: date
-      - name: ping
-        run: ping 8.8.8.8 -c3
